@@ -1,0 +1,48 @@
+## App
+temp_docker
+test_conversational_db
+results
+test_retrieval_*
+tempdb
+
+## System
+.env
+
+## Python
+*.py[co]
+__pycache__
+*.egg
+*.egg-info
+build
+eggs
+parts
+bin
+var
+sdist
+develop-eggs
+.installed.cfg
+
+# Installer logs
+pip-log.txt
+
+# Unit test / coverage reports
+.coverage
+.tox
+
+# lockfiles
+*.lock
+
+## caches
+cachedir
+.cache
+
+# Mac
+.DS_Store
+
+## Temp
+*.temp
+*.tmp
+t.py
+* copy*.py
+web/
+dynamic/
