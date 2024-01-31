@@ -34,10 +34,14 @@ class GithubConnections:
     _repo_2_connection: dict = None
 
     def __post_init__(self):
-        index: IndexConfig
+        index_cfg: IndexConfig
+        redact = set(["access_token"])
         for index_cfg in self.config.index:
             for k in index_cfg:
-                print(k, index_cfg[k])
+                cfg = index_cfg.copy()
+                if k in redact:
+                    cfg[k] = "*****"
+                log.debug(f"{k}={cfg[k]}")
             gc = GithubConnection(index_cfg)
             self.connections[index_cfg.name] = gc
 
