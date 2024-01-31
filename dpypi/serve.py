@@ -7,7 +7,6 @@ from logging import getLogger
 
 from github import Repository
 from pi_conf import Config
-from platformdirs import site_cache_dir
 
 from dpypi import ROOT_DIR, cfg
 from dpypi.github_connection import GithubConnection, GithubConnections
@@ -27,7 +26,6 @@ class HandlerConfig(Config):
     web_dir: str
     artifact_dir: str
     html_dir: str
-    template_dir: str
 
 
 connections = GithubConnections(cfg)
@@ -69,7 +67,6 @@ class HTTPHandler(SimpleHTTPRequestHandler):
             release_assets=assets,
             html_path=html_path,
             artifact_dir=self.config.artifact_dir,
-            template_dir=self.config.template_dir,
         )
         log.debug(f"wrote {html_path}")
         return f"/{html_path}"
@@ -118,7 +115,6 @@ def main():
     conf = HandlerConfig(
         artifact_dir=cfg.get("artifact_dir", "web/artifacts"),
         html_dir=cfg.get("html_dir", "web/html"),
-        template_dir=cfg.get("template_dir", f"{ROOT_DIR}/templates"),
     )
     http_handler = partial(HTTPHandler, conf)
     httpd = BaseHTTPServer((base_path, port), http_handler)

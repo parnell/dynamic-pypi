@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "dynamic-pypi"
-version = "0.5.1"
+version = "0.6"
 description = ""
 authors = ["parnell <3028114+parnell@users.noreply.github.com>"]
 readme = "README.md"
@@ -9,9 +9,7 @@ packages = [{ include = "dpypi" }]
 
 [tool.poetry.dependencies]
 python = "^3.11"
-beautifulsoup4 = "^4.12.3"
 pi-conf = "^0.7.6.4"
-platformdirs = "^4.2.0"
 pygithub = "^2.2.0"
 
 [tool.poetry.scripts]
