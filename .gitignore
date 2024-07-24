@@ -41,6 +41,7 @@ cachedir
 .DS_Store
 
 ## Temp
+.private
 *.temp
 *.tmp
 t.py

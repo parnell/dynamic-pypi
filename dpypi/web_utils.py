@@ -1,6 +1,8 @@
 import os
+from typing import Sequence
 
 from github import GitReleaseAsset
+
 html_index = """
 <!DOCTYPE html>
 <html lang="en">
@@ -12,7 +14,7 @@ html_index = """
 
 def write_index_html(
     project: str,
-    release_assets: list[GitReleaseAsset.GitReleaseAsset],
+    release_assets: Sequence[GitReleaseAsset.GitReleaseAsset],
     html_path: str,
     artifact_dir: str,
 ) -> str:
@@ -29,8 +31,8 @@ def write_index_html(
     
     links = []
     for asset in release_assets:
-        name = asset.browser_download_url.split("/")[-1]
-        # tag = soup.new_tag("a", href=f"/{artifact_dir}/{project}/{asset.name}")
+        # name = asset.browser_download_url.split("/")[-1]
+        name = asset.name
         s = f'<a href="/{artifact_dir}/{project}/{asset.name}">{name}</a>'
         links.append(s)
     html = html_index.format(links="\n    ".join(links))
@@ -39,5 +41,4 @@ def write_index_html(
 
     with open(html_path, "w") as f:
         f.write(html)
-        # f.write(soup.prettify())
     return html_path

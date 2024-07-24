@@ -1,0 +1,26 @@
+cache=false
+[http_handler]
+artifact_dir="web/artifacts"
+html_dir="web/html"
+cache=false
+build=true
+base_path="web"
+        # artifact_dir=cfg.get("artifact_dir", "web/artifacts"),
+        # html_dir=cfg.get("html_dir", "web/html"),
+        # cache=cfg.get("cache", False),
+        # build=cfg.get("build", False),
+        # base_path=base_path,
+
+
+[[index]]
+name = "<username>"
+uri = "https://github.com/<username>"
+repos = ["<repo1>", "<repo2>", "<repo3>"]
+access_token = "<github token: example github_pat_11A2XDJE...Cjb0AbLyhVx_H>"
+
+## We can add multiple index blocks to fetch from multiple repositories
+[[index]]
+name = "<username2>"
+uri = "https://github.com/<username2>"
+repos = ["<another_repo1>", "<another_repo2>"]
+access_token = "<github token: example github_pat_9AA2XDJE...Cjb0AbLyh99_H>"
