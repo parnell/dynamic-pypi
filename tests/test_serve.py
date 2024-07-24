@@ -105,7 +105,7 @@ def test_serve():
         "dpypi.serve.make_connections", return_value={"test_repo": Mock()}
     ):
 
-        serve(mock_config)
+        serve(mock_config) #type: ignore
 
         mock_server.assert_called_once_with(("", 8083), ANY)
         mock_server.return_value.serve_forever.assert_called_once()
