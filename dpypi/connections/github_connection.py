@@ -28,6 +28,7 @@ class IndexConfig(BaseModel):
 
 @dataclass
 class GithubConnection(Connection):
+    name : str
     config: IndexConfig
 
     _g: Optional[Github] = None
@@ -46,9 +47,11 @@ class GithubConnection(Connection):
         return self.config.repos
 
     @property
-    def auth(self) -> Optional[Auth.Token]:
+    def auth(self) -> Auth.Token:
         if self._auth is None and self.config.access_token:
             self._auth = Auth.Token(self.config.access_token)
+        if not self._auth:
+            raise Exception("No access token provided")
         return self._auth
 
     @property
@@ -85,7 +88,7 @@ class GithubConnection(Connection):
         repo: Repository,
         release: str | GitRelease,
         asset_name: str,
-        dest_folder: str | StringIO | BytesIO,
+        dest_folder: str ,
         overwrite: bool = False,
     ) -> Optional[ReleaseAsset]:
         asset_name = asset_name.split("/")[-1]

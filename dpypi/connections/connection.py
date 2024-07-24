@@ -28,8 +28,11 @@ class ReleaseAsset(GitReleaseAsset):
     #     return self.browser_download_url.split("/")[-1]
 
 
+@dataclass
 class Repository(GitRepository):
-    pass
+    @property
+    @abstractmethod
+    def name(self) -> str: ...
 
 
 class Connection:
@@ -44,7 +47,7 @@ class Connection:
         repo: Repository,
         release: str | Release,
         asset_name: str,
-        dest_folder: str | StringIO | BytesIO,
+        dest_folder: str,
         overwrite: bool = False,
     ) -> Optional[ReleaseAsset]: ...
 

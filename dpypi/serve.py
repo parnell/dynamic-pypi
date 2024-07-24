@@ -9,11 +9,11 @@ from http.server import SimpleHTTPRequestHandler
 from logging import getLogger
 from typing import Any
 
-from github import Repository
+from github import Repository as GithubRepository
 from pi_conf import Config
 
 from dpypi import cfg
-from dpypi.connections.connection import Connection
+from dpypi.connections.connection import Connection, Repository
 from dpypi.connections.github_connection import GithubConnection
 from dpypi.connections.local_connection import LocalConnection
 from dpypi.web_utils import write_index_html
@@ -78,7 +78,7 @@ class HTTPHandler(SimpleHTTPRequestHandler):
 
     def _make_distribution_html(
         self,
-        repo: Repository.Repository,
+        repo: Repository,
         connection: Connection,
     ) -> str:
         distribution = repo.name

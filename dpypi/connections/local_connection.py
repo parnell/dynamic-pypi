@@ -88,7 +88,7 @@ class LocalConnection(Connection):
         repo: Repository,
         release: str | Release,
         asset_name: str,
-        dest_folder: str | StringIO | BytesIO,
+        dest_folder: str,
         overwrite: bool = False,
     ) -> Optional[ReleaseAsset]: 
         raise NotImplementedError("Not implemented")
