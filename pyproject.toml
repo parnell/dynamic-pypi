@@ -9,8 +9,8 @@ packages = [{ include = "dpypi" }]
 
 [tool.poetry.dependencies]
 python = "^3.10"
-pi-conf = ">=0.7.7.5"
-pygithub = "^2.2.0"
+pi-conf = {develop = true, path = "../pi-conf"}
+pygithub = "^2.3.0"
 pydantic = "^2.8.2"
 
 [tool.poetry.scripts]
